@@ -39,7 +39,7 @@ unsetopt complete_aliases beep
 
 mkdir -p ~/usr/share/zsh/
 HISTFILE=~/usr/share/zsh/history
-HISTSIZE=300
+HISTSIZE=3000000
 SAVEHIST=9999999999999999
 
 ######
