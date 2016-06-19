@@ -20,23 +20,27 @@ bindkey '^[[B' history-substring-search-down
 
 ######
 
-zstyle ':completion:*' verbose yes
-zstyle ':completion:*:descriptions' format '%B%d%b'
-zstyle ':completion:*:messages' format '%d'
-zstyle ':completion:*:warnings' format 'No matches for: %d'
-zstyle ':completion:*' group-name ”
-
-HISTFILE=~/usr/share/zsh/history
-HISTSIZE=300
-SAVEHIST=300000000
+#zstyle ':completion:*' verbose yes
+#zstyle ':completion:*:descriptions' format '%B%d%b'
+#zstyle ':completion:*:messages' format '%d'
+#zstyle ':completion:*:warnings' format 'No matches for: %d'
+#zstyle ':completion:*' group-name ”
+#zstyle ':completion:*' completer _expand _complete _ignored _correct
+#zstyle ':completion:*' use-compctl true
+#zstyle ':completion:*' verbose true
+#setopt appendhistory autocd extendedglob nomatch notify aliases prompt_cr prompt_sp emacs complete_aliases
+#bindkey -e
 
 zstyle ':completion:*' completer _expand _complete _ignored _correct
-zstyle ':completion:*' use-compctl true
-zstyle ':completion:*' verbose true
+autoload -Uz compinit
+compinit
 
-setopt appendhistory autocd extendedglob nomatch notify aliases prompt_cr prompt_sp emacs complete_aliases
-unsetopt beep
-bindkey -e
+unsetopt complete_aliases beep
+
+mkdir -p ~/usr/share/zsh/
+HISTFILE=~/usr/share/zsh/history
+HISTSIZE=300
+SAVEHIST=9999999999999999
 
 ######
 
