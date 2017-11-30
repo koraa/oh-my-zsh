@@ -6,10 +6,16 @@ plugins=(bower cabal git git-flow gnu-utils gpg-agent
   pip rsync safe-paste singlechar)
 
 # Singlechar Plugin
+setopt complete_aliases
 GREP="ag"
 WGET="aria2c"
 PAGER_COMP="-default-"
 WGET_COMP="-default-"
+compdef y=ag
+compdef n=ag
+compdef d=aria2c
+compdef u=curl
+compdef x=xargs
 
 . "$(dirname "$0")/oh-my-zsh.sh"
 
@@ -54,7 +60,7 @@ alias mkdir="mkdir -p"
 export MANPAGER="most -C"
 export MOST_SWITCHES="-s"
 
-export EDITOR="vim"
+export EDITOR="nvim"
 export PAGER="most"
 
 export PATH=".:${HOME}/usr/sbin:${HOME}/usr/bin:${HOME}/usr/games:${PATH}"
@@ -63,3 +69,5 @@ export CPPFLAGS="${CPPFLAGS} -I${HOME}/usr/include"
 export LDFLAGS="${LDFLAGS} -L${HOME}/usr/lib"
 export LD_LIBRARY_PATH="${HOME}/usr/lib:${LD_LIBRARY_PATH}"
 export LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8
+
+export FZF_DEFAULT_COMMAND="ag --ignore node_modules --ignore .git -l"
