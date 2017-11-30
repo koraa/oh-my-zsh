@@ -1,21 +1,16 @@
 export ZSH="$(dirname "$0")"
 
 ZSH_THEME="grayabell"
-plugins=(bower cabal git git-flow gnu-utils gpg-agent
-  grunt history-substring-search mercurial mosh nmap npm nvm
-  pip rsync safe-paste singlechar)
+plugins=(cabal git git-flow gnu-utils gpg-agent
+  history-substring-search mercurial mosh nmap npm nvm
+  pip rsync safe-paste singlechar sudo python
+  coffee)
 
 # Singlechar Plugin
-setopt complete_aliases
 GREP="ag"
 WGET="aria2c"
 PAGER_COMP="-default-"
 WGET_COMP="-default-"
-compdef y=ag
-compdef n=ag
-compdef d=aria2c
-compdef u=curl
-compdef x=xargs
 
 . "$(dirname "$0")/oh-my-zsh.sh"
 
@@ -38,10 +33,18 @@ bindkey '^[[B' history-substring-search-down
 #bindkey -e
 
 zstyle ':completion:*' completer _expand _complete _ignored _correct
-autoload -Uz compinit
-compinit
 
-unsetopt complete_aliases beep
+
+autoload -Uz compinit
+compinit -i
+
+autoload -Uz bashcompinit
+bashcompinit -i
+
+#source /usr/share/bash-completion/completions/aria2c
+source /usr/share/bash-completion/completions/calibre
+source /usr/share/bash-completion/completions/chcpu
+source /usr/share/bash-completion/completions/fsck
 
 mkdir -p ~/usr/share/zsh/
 HISTFILE=~/usr/share/zsh/history
@@ -71,3 +74,20 @@ export LD_LIBRARY_PATH="${HOME}/usr/lib:${LD_LIBRARY_PATH}"
 export LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8
 
 export FZF_DEFAULT_COMMAND="ag --ignore node_modules --ignore .git -l"
+
+
+setopt complete_aliases
+unsetopt beep
+compdef y=ag
+compdef n=ag
+#compdef d=aria2c
+compdef u=curl
+compdef x=xargs
+compdef s=sudo
+
+alias sc="sudo systemctl"
+alias scstart="sudo systemctl start"
+alias scstat="systemctl status"
+alias scstop="sudo systemctl stop"
+alias scre="sudo systemctl restart"
+compdef sc=systemctl
